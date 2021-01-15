@@ -40,6 +40,13 @@ android {
     }
 }
 
+kapt {
+    arguments {
+        arg("room.incremental", "true")
+        arg("room.schemaLocation", "$projectDir/schemas")
+    }
+}
+
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     implementation(project(BuildModules.coreModule))
