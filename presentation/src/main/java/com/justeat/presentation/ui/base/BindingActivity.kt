@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.justeat.presentation.ui
+package com.justeat.presentation.ui.base
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

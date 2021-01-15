@@ -13,13 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.justeat.presentation.ui
+package com.justeat.presentation.ui.view
 
 import android.os.Bundle
 import com.justeat.presentation.R
 import com.justeat.presentation.databinding.ActivityMainBinding
+import com.justeat.presentation.ui.adapter.RestaurantRecyclerViewAdapter
+import com.justeat.presentation.ui.base.BindingActivity
 
 class MainActivity : BindingActivity<ActivityMainBinding>() {
+
+    private lateinit var restaurantRecyclerViewAdapter: RestaurantRecyclerViewAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

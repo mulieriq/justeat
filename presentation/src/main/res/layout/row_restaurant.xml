@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="restaurant"
+            type="com.justeat.presentation.data.Restaurant" />
     </data>
 
     <androidx.cardview.widget.CardView
