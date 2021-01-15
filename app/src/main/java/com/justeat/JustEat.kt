@@ -18,6 +18,7 @@ package com.justeat
 import android.app.Application
 import androidx.annotation.Nullable
 import com.justeat.core.util.CrashlyticsTree
+import com.justeat.data.di.dataModules
 import com.justeat.di.appModules
 import org.jetbrains.annotations.NotNull
 import org.koin.android.ext.koin.androidContext
@@ -25,6 +26,7 @@ import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
 import org.koin.core.error.KoinAppAlreadyStartedException
 import org.koin.core.logger.Level
+import org.koin.core.module.Module
 import timber.log.Timber
 
 open class JustEat : Application() {
@@ -41,7 +43,11 @@ open class JustEat : Application() {
             startKoin {
                 androidLogger(Level.ERROR)
                 androidContext(applicationContext)
-                modules(appModules)
+                val modules = mutableListOf<Module>().apply {
+                    addAll(appModules)
+                    addAll(dataModules)
+                }
+                modules(modules)
             }
         } catch (error: KoinAppAlreadyStartedException) {
             Timber.e(error.localizedMessage)
