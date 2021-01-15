@@ -152,6 +152,13 @@ object TestLibraries {
     const val liveDataTesting = "com.jraska.livedata:testing-ktx:${Versions.liveDataTesting}"
 }
 
+object BuildModules {
+    const val coreModule = ":core"
+    const val dataModule = ":data"
+    const val domainModule = ":domain"
+    const val presentationModule = ":presentation"
+}
+
 object AndroidSdk {
     const val minSdkVersion = 23
     const val compileSdkVersion = 30

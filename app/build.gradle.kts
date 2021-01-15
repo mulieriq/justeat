@@ -72,18 +72,13 @@ android {
 
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
+    implementation(project(BuildModules.coreModule))
+    implementation(project(BuildModules.dataModule))
+    implementation(project(BuildModules.domainModule))
+    implementation(project(BuildModules.presentationModule))
+
     implementation(Libraries.kotlinStdLib)
     implementation(Libraries.coreKtx)
-
-    // Material and AndroidX
-    implementation(Libraries.constraintLayout)
-    implementation(Libraries.appCompat)
-    implementation(Libraries.swiperefreshlayout)
-    implementation(Libraries.material)
-
-    // Firebase crashlytics
-    implementation(platform(Libraries.bom))
-    implementation(Libraries.crashlytics)
 
     // Coroutines
     implementation(Libraries.coroutines)

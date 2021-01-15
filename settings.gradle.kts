@@ -1,3 +1,7 @@
+include(":domain")
+include(":presentation")
+include(":data")
+include(":core")
 pluginManagement {
     repositories {
         jcenter()
@@ -24,4 +28,4 @@ pluginManagement {
     }
 }
 include("app")
-rootProject.name = "Just Eat"
+rootProject.name = "JustEat"

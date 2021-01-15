@@ -17,8 +17,8 @@ package com.justeat
 
 import android.app.Application
 import androidx.annotation.Nullable
+import com.justeat.core.util.CrashlyticsTree
 import com.justeat.di.appModules
-import com.justeat.util.CrashlyticsTree
 import org.jetbrains.annotations.NotNull
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
