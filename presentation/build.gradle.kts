@@ -55,5 +55,4 @@ dependencies {
 
     // Debug - for debug builds only
     implementation(Libraries.timber)
-
 }
