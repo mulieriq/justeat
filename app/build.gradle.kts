@@ -77,47 +77,11 @@ dependencies {
     implementation(Libraries.kotlinStdLib)
     implementation(Libraries.coreKtx)
 
-    // Coroutines
-    implementation(Libraries.coroutines)
-    implementation(Libraries.coroutinesAndroid)
-
     // DI - KOIN
     implementation(Libraries.koin)
     implementation(Libraries.koinViewModel)
 
-    // Lifecycle
-    implementation(Libraries.viewModel)
-    implementation(Libraries.livedata)
-    implementation(Libraries.lifecycle)
-    implementation(Libraries.viewModelSavedState)
-
     // Debug - for debug builds only
     implementation(Libraries.timber)
     debugImplementation(Libraries.leakCanary)
-
-    // UI Tests
-    androidTestImplementation(TestLibraries.espresso)
-    androidTestImplementation(TestLibraries.kakao)
-
-    // Instrumentation Tests
-    androidTestImplementation(TestLibraries.runner)
-    androidTestImplementation(TestLibraries.rules)
-    androidTestImplementation(TestLibraries.koinTest)
-    androidTestImplementation(TestLibraries.androidXJUnit)
-    androidTestImplementation(TestLibraries.androidXTestCore)
-    androidTestImplementation(TestLibraries.androidMockK)
-
-    // Unit Tests
-    testImplementation(TestLibraries.jUnit)
-    testImplementation(TestLibraries.roomTest)
-    testImplementation(TestLibraries.koinTest)
-    testImplementation(TestLibraries.mockK)
-    testImplementation(TestLibraries.mockWebServer)
-    testImplementation(TestLibraries.roboelectric)
-    testImplementation(TestLibraries.truth)
-    testImplementation(TestLibraries.runner)
-    testImplementation(TestLibraries.androidXJUnit)
-    testImplementation(TestLibraries.coroutinesTest)
-    testImplementation(TestLibraries.archComponentTest)
-    testImplementation(TestLibraries.liveDataTesting)
 }

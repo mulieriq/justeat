@@ -8,11 +8,6 @@ object Versions {
     // Firebase
     const val firebase = "26.0.0"
 
-    //Networking
-    const val retrofit = "2.9.0"
-    const val okhttp = "4.8.1"
-    const val loggingInterceptor = "4.8.1"
-
     //DI - KOIN
     const val koin = "2.1.5"
 
@@ -27,9 +22,7 @@ object Versions {
 
     // Logging - debug builds
     const val timber = "4.7.1"
-    const val stetho = "1.5.1"
     const val leakCanary = "2.4"
-    const val chucker = "1.1.0"
 
     // Kotlin
     const val kotlinVersion = "1.4.0"
@@ -50,7 +43,6 @@ object Versions {
     const val roboelectric = "4.4-beta-1"
     const val androidXJUnit = "1.1.1"
     const val truth = "1.0.1"
-    const val mockWebServer = "4.8.1"
     const val androidXTestCore = "1.3.0"
     const val runner = "1.3.0"
     const val rules = "1.3.0"
@@ -90,13 +82,6 @@ object Libraries {
     const val bom = "com.google.firebase:firebase-bom:${Versions.firebase}"
     const val crashlytics = "com.google.firebase:firebase-crashlytics"
 
-    // Networking - Retrofit, OKHTTP and loggingInterceptor
-    const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
-    const val gson = "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
-    const val ohttp = "com.squareup.okhttp3:okhttp:${Versions.okhttp}"
-    const val loggingInterceptor =
-        "com.squareup.okhttp3:logging-interceptor:${Versions.loggingInterceptor}"
-
     // DI - KOIN
     const val koin = "org.koin:koin-android:${Versions.koin}"
     const val koinViewModel = "org.koin:koin-androidx-viewmodel:${Versions.koin}"
@@ -120,10 +105,7 @@ object Libraries {
 
     // Logging - debug builds
     const val timber = "com.jakewharton.timber:timber:${Versions.timber}"
-    const val stetho = "com.facebook.stetho:stetho:${Versions.stetho}"
     const val leakCanary = "com.squareup.leakcanary:leakcanary-android:${Versions.leakCanary}"
-    const val chunkerDebug = "com.github.chuckerteam.chucker:library:${Versions.chucker}"
-    const val chunkerRelease = "com.github.chuckerteam.chucker:library-no-op:${Versions.chucker}"
 
     // Kotlin
     const val kotlinStdLib = "org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlinVersion}"
@@ -136,7 +118,6 @@ object TestLibraries {
     const val roboelectric = "org.robolectric:robolectric:${Versions.roboelectric}"
     const val androidXJUnit = "androidx.test.ext:junit:${Versions.androidXJUnit}"
     const val truth = "com.google.truth:truth:${Versions.truth}"
-    const val mockWebServer = "com.squareup.okhttp3:mockwebserver:${Versions.mockWebServer}"
     const val androidXTestCore = "androidx.test:core:${Versions.androidXTestCore}"
     const val runner = "androidx.test:runner:${Versions.runner}"
     const val rules = "androidx.test:rules:${Versions.rules}"

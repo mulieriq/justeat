@@ -52,15 +52,4 @@ dependencies {
 
     // Unit Tests
     testImplementation(TestLibraries.jUnit)
-    testImplementation(TestLibraries.roomTest)
-    testImplementation(TestLibraries.koinTest)
-    testImplementation(TestLibraries.mockK)
-    testImplementation(TestLibraries.mockWebServer)
-    testImplementation(TestLibraries.roboelectric)
-    testImplementation(TestLibraries.truth)
-    testImplementation(TestLibraries.runner)
-    testImplementation(TestLibraries.androidXJUnit)
-    testImplementation(TestLibraries.coroutinesTest)
-    testImplementation(TestLibraries.archComponentTest)
-    testImplementation(TestLibraries.liveDataTesting)
 }
