@@ -1,6 +1,8 @@
 *.iml
 .gradle
 /local.properties
+/.idea/*
+.idea/*
 /.idea
 /.idea/caches
 /.idea/libraries
@@ -15,3 +17,10 @@
 .cxx
 buildSrc/build/*
 buildSrc/.gradle/*
+
+# fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
+fastlane/test_output
+fastlane/readme.md
