@@ -10,7 +10,7 @@ env:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
       - name: Write key file
         env:
@@ -40,14 +40,6 @@ jobs:
           key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
           restore-keys: |
             ${{ runner.os }}-gems-
-
-      - name: setup ruby
-        uses: actions/setup-ruby@v1
-        with:
-          ruby-version: '>= 2.6'
-
-      - name: install dependencies
-        run: gem install bundler && bundle install
 
       - name: fastlane develop
         uses: maierj/fastlane-action@v1.4.0
