@@ -16,13 +16,16 @@
 package com.justeat.presentation.ui
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import com.justeat.presentation.R
+import com.justeat.presentation.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BindingActivity<ActivityMainBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding.lifecycleOwner = this
     }
+
+    override val layoutResId: Int
+        get() = R.layout.activity_main
 }
