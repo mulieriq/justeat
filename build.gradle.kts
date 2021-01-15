@@ -9,6 +9,7 @@ plugins {
     id(BuildPlugins.kotlinAndroidExtensions) apply false
     id(BuildPlugins.dokkaPlugin) version Versions.dokka
     id(BuildPlugins.gradleVersionsPlugin) version Versions.gradleVersionsPlugin
+    id(BuildPlugins.slackKeeper) version Versions.slackKeeper
 }
 
 allprojects {
@@ -21,6 +22,8 @@ allprojects {
     }
 
     apply(plugin = BuildPlugins.dokkaPlugin)
+
+    apply(plugin = BuildPlugins.spotlessPlugin)
 
     apply(plugin = BuildPlugins.ktlintPlugin)
     ktlint {

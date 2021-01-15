@@ -3,6 +3,7 @@ plugins {
     id(BuildPlugins.kotlinAndroid)
     id(BuildPlugins.kotlinAndroidExtensions)
     id(BuildPlugins.ktlintPlugin)
+    id(BuildPlugins.kapt)
     id(BuildPlugins.jacocoAndroid)
 }
 
@@ -12,27 +13,27 @@ jacoco {
 
 android {
 
-    compileSdkVersion(AndroidSDK.compile)
+    compileSdkVersion(AndroidSdk.compileSdkVersion)
     buildToolsVersion("30.0.2")
 
     android.buildFeatures.dataBinding = true
     android.buildFeatures.viewBinding = true
 
     defaultConfig {
-        applicationId = "ke.co.appslab.gradleplugins"
-        minSdkVersion(AndroidSDK.min)
-        targetSdkVersion(AndroidSDK.target)
-        versionCode = Versions.code
-        versionName = Versions.name
+        applicationId = "com.justeat"
+        minSdkVersion(AndroidSdk.minSdkVersion)
+        targetSdkVersion(AndroidSdk.targetSdkVersion)
+        versionCode = AndroidSdk.versionCode
+        versionName = AndroidSdk.versionName
+        vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     testOptions {
-        execution = "androidx_test_orchestrator"
         animationsDisabled = true
         unitTests.apply {
             isReturnDefaultValues = true
-            isIncludeAndroidResources = true
+            isIncludeAndroidResources = false
         }
     }
 
@@ -45,25 +46,86 @@ android {
         jvmTarget = "1.8"
     }
 
-    buildTypes {
-        getByName("release") {
-            isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+    signingConfigs {
+        getByName("debug") {
+            storeFile = file("../keystore/debug.keystore")
+            keyAlias = "androiddebugkey"
+            keyPassword = "android"
+            storePassword = "android"
         }
     }
 
-    dependencies {
-        implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
-        implementation(Libraries.kotlinStandardLibrary)
-        implementation(Libraries.appCompat)
-        implementation(Libraries.ktxCore)
-        implementation(Libraries.constraintLayout)
-        implementation(Libraries.materialComponents)
+    buildTypes {
+        getByName("debug") {
+            isDebuggable = true
+            versionNameSuffix = " - debug"
+            applicationIdSuffix = ".debug"
+            signingConfig = signingConfigs.getByName("debug")
+        }
 
-        androidTestImplementation(TestLibraries.testRunner)
-        androidTestImplementation(TestLibraries.espresso)
-        androidTestImplementation(TestLibraries.annotation)
-
-        testImplementation(TestLibraries.junit4)
+        getByName("release") {
+            isShrinkResources = true
+            isMinifyEnabled = true
+        }
     }
+}
+
+dependencies {
+    implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
+    implementation(Libraries.kotlinStdLib)
+    implementation(Libraries.coreKtx)
+
+    // Material and AndroidX
+    implementation(Libraries.constraintLayout)
+    implementation(Libraries.appCompat)
+    implementation(Libraries.swiperefreshlayout)
+    implementation(Libraries.material)
+
+    // Firebase crashlytics
+    implementation(platform(Libraries.bom))
+    implementation(Libraries.crashlytics)
+
+    // Coroutines
+    implementation(Libraries.coroutines)
+    implementation(Libraries.coroutinesAndroid)
+
+    // DI - KOIN
+    implementation(Libraries.koin)
+    implementation(Libraries.koinViewModel)
+
+    // Lifecycle
+    implementation(Libraries.viewModel)
+    implementation(Libraries.livedata)
+    implementation(Libraries.lifecycle)
+    implementation(Libraries.viewModelSavedState)
+
+    // Debug - for debug builds only
+    implementation(Libraries.timber)
+    debugImplementation(Libraries.leakCanary)
+
+    // UI Tests
+    androidTestImplementation(TestLibraries.espresso)
+    androidTestImplementation(TestLibraries.kakao)
+
+    // Instrumentation Tests
+    androidTestImplementation(TestLibraries.runner)
+    androidTestImplementation(TestLibraries.rules)
+    androidTestImplementation(TestLibraries.koinTest)
+    androidTestImplementation(TestLibraries.androidXJUnit)
+    androidTestImplementation(TestLibraries.androidXTestCore)
+    androidTestImplementation(TestLibraries.androidMockK)
+
+    // Unit Tests
+    testImplementation(TestLibraries.jUnit)
+    testImplementation(TestLibraries.roomTest)
+    testImplementation(TestLibraries.koinTest)
+    testImplementation(TestLibraries.mockK)
+    testImplementation(TestLibraries.mockWebServer)
+    testImplementation(TestLibraries.roboelectric)
+    testImplementation(TestLibraries.truth)
+    testImplementation(TestLibraries.runner)
+    testImplementation(TestLibraries.androidXJUnit)
+    testImplementation(TestLibraries.coroutinesTest)
+    testImplementation(TestLibraries.archComponentTest)
+    testImplementation(TestLibraries.liveDataTesting)
 }
