@@ -13,13 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.justeat.presentation.data
+package com.justeat.presentation.fake
 
-data class Restaurant(
-    val restaurantName: String,
-    val restaurantStatus: String,
-    val restaurantRating: Double,
-    val restaurantDistance: Int,
-    val restaurantMinCost: Int,
-    val restaurantDeliveryCost: Int
+import com.justeat.presentation.data.Restaurant
+
+val fakeRestaurant = listOf(
+    Restaurant("Tanoshii Sushi", "open", 4.5, 1190, 1000, 200)
 )
