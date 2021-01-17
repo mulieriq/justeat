@@ -8,6 +8,9 @@ plugins {
 android {
     compileSdkVersion(AndroidSdk.compileSdkVersion)
 
+    android.buildFeatures.dataBinding = true
+    android.buildFeatures.viewBinding = true
+
     defaultConfig {
         minSdkVersion(AndroidSdk.minSdkVersion)
         targetSdkVersion(AndroidSdk.targetSdkVersion)
@@ -48,6 +51,9 @@ dependencies {
     // Firebase crashlytics
     implementation(platform(Libraries.bom))
     implementation(Libraries.crashlytics)
+
+    // Gson
+    implementation(Libraries.gson)
 
     // Debug - for debug builds only
     implementation(Libraries.timber)

@@ -8,6 +8,9 @@ object Versions {
     // Firebase
     const val firebase = "26.0.0"
 
+    // Gson
+    const val gson = "2.9.0"
+
     //DI - KOIN
     const val koin = "2.1.5"
 
@@ -81,6 +84,9 @@ object Libraries {
     // Firebase
     const val bom = "com.google.firebase:firebase-bom:${Versions.firebase}"
     const val crashlytics = "com.google.firebase:firebase-crashlytics"
+
+    // Gson
+    const val gson = "com.squareup.retrofit2:converter-gson:${Versions.gson}"
 
     // DI - KOIN
     const val koin = "org.koin:koin-android:${Versions.koin}"
