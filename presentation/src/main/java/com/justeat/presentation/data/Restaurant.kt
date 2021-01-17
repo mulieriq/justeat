@@ -16,5 +16,10 @@
 package com.justeat.presentation.data
 
 data class Restaurant(
-    val restaurantName: String
+    val restaurantName: String,
+    val restaurantStatus: String,
+    val restaurantRating: Double,
+    val restaurantDistance: Int,
+    val restaurantMinCost: Int,
+    val restaurantDeliveryCost: Int
 )
