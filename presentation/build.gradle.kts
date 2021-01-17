@@ -15,7 +15,15 @@ android {
         minSdkVersion(AndroidSdk.minSdkVersion)
         targetSdkVersion(AndroidSdk.targetSdkVersion)
         vectorDrawables.useSupportLibrary = true
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "com.justeat.presentation.runner.MockTestRunner"
+    }
+
+    testOptions {
+        animationsDisabled = true
+        unitTests.apply {
+            isReturnDefaultValues = true
+            isIncludeAndroidResources = false
+        }
     }
 
     compileOptions {
@@ -46,7 +54,7 @@ android {
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     implementation(project(BuildModules.coreModule))
-    implementation(project(BuildModules.domainModule))
+    implementation(project(BuildModules.dataModule))
 
     implementation(Libraries.kotlinStdLib)
     implementation(Libraries.coreKtx)
@@ -57,12 +65,26 @@ dependencies {
     implementation(Libraries.swiperefreshlayout)
     implementation(Libraries.material)
 
+    // Lifecycle
+    implementation(Libraries.viewModel)
+    implementation(Libraries.livedata)
+    implementation(Libraries.lifecycle)
+    implementation(Libraries.viewModelSavedState)
+
+    // DI - KOIN
+    implementation(Libraries.koin)
+    implementation(Libraries.koinViewModel)
+
     // Debug - for debug builds only
     implementation(Libraries.timber)
 
     // UI Tests
     androidTestImplementation(TestLibraries.espresso)
     androidTestImplementation(TestLibraries.kakao)
+
+    // Instrumentation Tests
+    androidTestImplementation(TestLibraries.koinTest)
+    androidTestImplementation(TestLibraries.androidXJUnit)
 
     // Unit Tests
     testImplementation(TestLibraries.jUnit)
