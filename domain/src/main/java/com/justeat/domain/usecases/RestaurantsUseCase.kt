@@ -25,6 +25,6 @@ class RestaurantsUseCase(
     private val restaurantRepository: RestaurantRepository
 ) : RestaurantBaseUseCase {
 
-    override suspend fun invoke(param: String): Flow<List<RestaurantDomainModel>> =
-        restaurantRepository.fetchRestaurants("name", "sortBy")
+    override suspend fun invoke(params: String): Flow<List<RestaurantDomainModel>> =
+        restaurantRepository.fetchRestaurants()
 }

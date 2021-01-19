@@ -25,7 +25,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 class RestaurantRepositoryImpl(
-    private val restaurantDao: RestaurantDao,
+    private val restaurantDao: RestaurantDao
 ) : RestaurantRepository {
 
     override fun fetchRestaurants(

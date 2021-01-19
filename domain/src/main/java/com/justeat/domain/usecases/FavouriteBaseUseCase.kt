@@ -24,7 +24,7 @@ class FavouriteUseCase(
     private val restaurantRepository: RestaurantRepository
 ) : FavouriteBaseUseCase {
 
-    override suspend fun invoke(restaurantDomainModel: RestaurantDomainModel) {
-        restaurantRepository.favouriteRestaurant(restaurantDomainModel)
+    override suspend fun invoke(params: RestaurantDomainModel) {
+        restaurantRepository.favouriteRestaurant(params)
     }
 }
