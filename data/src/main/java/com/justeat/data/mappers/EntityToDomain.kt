@@ -24,5 +24,11 @@ fun RestaurantEntity.toDomain() = RestaurantDomainModel(
     restaurantDistance = this.distance,
     restaurantMinCost = this.minCost,
     restaurantRating = this.ratingAverage,
-    restaurantStatus = this.status
+    restaurantStatus = this.status,
+    isFavourite = this.isFavourite,
+    restaurantId = this.id,
+    restaurantBestMatch = this.bestMatch,
+    restaurantNewest = this.newest,
+    restaurantPopularity = this.popularity,
+    restaurantAverageProductPrice = this.averageProductPrice
 )

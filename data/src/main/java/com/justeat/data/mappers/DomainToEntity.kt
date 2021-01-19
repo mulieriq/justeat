@@ -18,7 +18,6 @@ package com.justeat.data.mappers
 import com.justeat.data.data.entity.RestaurantEntity
 import com.justeat.domain.model.RestaurantDomainModel
 
-// TODO Add other params
 internal fun RestaurantDomainModel.toEntity() = RestaurantEntity(
     name = this.restaurantName,
     status = this.restaurantStatus,
@@ -26,9 +25,10 @@ internal fun RestaurantDomainModel.toEntity() = RestaurantEntity(
     ratingAverage = this.restaurantRating,
     minCost = this.restaurantMinCost,
     deliveryCosts = this.restaurantDeliveryCost,
-    averageProductPrice = 0,
-    bestMatch = 0.0,
-    id = 0L,
-    newest = 0.0,
-    popularity = 0.0
+    averageProductPrice = this.restaurantAverageProductPrice,
+    bestMatch = this.restaurantBestMatch,
+    id = this.restaurantId,
+    newest = this.restaurantNewest,
+    popularity = this.restaurantPopularity,
+    isFavourite = this.isFavourite
 )

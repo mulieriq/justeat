@@ -18,6 +18,7 @@ package com.justeat.data.repository
 import androidx.sqlite.db.SimpleSQLiteQuery
 import com.justeat.data.data.dao.RestaurantDao
 import com.justeat.data.mappers.toDomain
+import com.justeat.data.mappers.toEntity
 import com.justeat.domain.model.RestaurantDomainModel
 import com.justeat.domain.repository.RestaurantRepository
 import kotlinx.coroutines.flow.Flow
@@ -60,5 +61,9 @@ class RestaurantRepositoryImpl(
         return restaurantDao.fetchRestaurants(query).map { list ->
             list.map { it.toDomain() }
         }
+    }
+
+    override suspend fun favouriteRestaurant(restaurantDomainModel: RestaurantDomainModel) {
+        restaurantDao.update(restaurantDomainModel.toEntity())
     }
 }
