@@ -19,7 +19,7 @@ data class Restaurant(
     val restaurantName: String,
     val restaurantStatus: String,
     val restaurantRating: Double,
-    val restaurantDistance: Int,
+    val restaurantDistance: Double,
     val restaurantMinCost: Int,
     val restaurantDeliveryCost: Int
 )
