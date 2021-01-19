@@ -26,7 +26,7 @@ android {
         versionCode = AndroidSdk.versionCode
         versionName = AndroidSdk.versionName
         vectorDrawables.useSupportLibrary = true
-        testInstrumentationRunner = "com.justeat.presentation.runner.MockTestRunner"
+        testInstrumentationRunner = "com.justeat.runner.MockTestRunner"
     }
 
     testOptions {
@@ -87,7 +87,22 @@ dependencies {
     implementation(Libraries.koin)
     implementation(Libraries.koinViewModel)
 
+    // Lifecycle
+    implementation(Libraries.viewModel)
+    implementation(Libraries.livedata)
+    implementation(Libraries.lifecycle)
+    implementation(Libraries.viewModelSavedState)
+
     // Debug - for debug builds only
     implementation(Libraries.timber)
     debugImplementation(Libraries.leakCanary)
+
+    // UI Tests
+    androidTestImplementation(TestLibraries.espresso)
+    androidTestImplementation(TestLibraries.kakao)
+    androidTestImplementation(TestLibraries.androidMockK)
+
+    // Instrumentation Tests
+    androidTestImplementation(TestLibraries.koinTest)
+    androidTestImplementation(TestLibraries.androidXJUnit)
 }
