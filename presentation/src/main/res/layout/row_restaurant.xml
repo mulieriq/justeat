@@ -33,11 +33,12 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
+                    android:id="@+id/btnFavourite"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="top|right"
                     android:layout_margin="16dp"
-                    android:src="@drawable/ic_favourite_unselected" />
+                    android:src="@{restaurant.favourite ? @drawable/ic_favourite_selected : @drawable/ic_favourite_unselected}" />
 
                 <TextView
                     android:id="@+id/textViewRestaurantState"
