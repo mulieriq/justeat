@@ -55,6 +55,9 @@ dependencies {
     implementation(Libraries.kotlinStdLib)
     implementation(Libraries.coreKtx)
 
+    // Gson
+    implementation(Libraries.gson)
+
     // Room
     implementation(Libraries.room)
     implementation(Libraries.roomRuntime)
@@ -88,4 +91,5 @@ dependencies {
     testImplementation(TestLibraries.coroutinesTest)
     testImplementation(TestLibraries.archComponentTest)
     testImplementation(TestLibraries.liveDataTesting)
+    testImplementation(TestLibraries.roboelectric)
 }

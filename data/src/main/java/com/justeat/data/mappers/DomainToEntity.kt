@@ -13,17 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.justeat.data.data.dao
+package com.justeat.data.mappers
 
-import androidx.room.Dao
-import androidx.room.RawQuery
-import androidx.sqlite.db.SupportSQLiteQuery
 import com.justeat.data.data.entity.RestaurantEntity
-import kotlinx.coroutines.flow.Flow
+import com.justeat.domain.model.RestaurantDomainModel
 
-@Dao
-interface RestaurantDao : BaseDao<RestaurantEntity> {
-
-    @RawQuery(observedEntities = [RestaurantEntity::class])
-    fun fetchRestaurants(query: SupportSQLiteQuery): Flow<List<RestaurantEntity>>
-}
+// TODO Add other params
+internal fun RestaurantDomainModel.toEntity() = RestaurantEntity(
+    name = this.restaurantName,
+    status = this.restaurantStatus,
+    distance = this.restaurantDistance,
+    ratingAverage = this.restaurantRating,
+    minCost = this.restaurantMinCost,
+    deliveryCosts = this.restaurantDeliveryCost,
+    averageProductPrice = 0,
+    bestMatch = 0.0,
+    id = 0L,
+    newest = 0.0,
+    popularity = 0.0
+)

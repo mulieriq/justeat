@@ -13,20 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.justeat.domain
+package com.justeat.data.mappers
 
-import org.junit.Test
+import com.justeat.data.data.entity.RestaurantEntity
+import com.justeat.domain.model.RestaurantDomainModel
 
-import org.junit.Assert.*
-
-/**
- * Example local unit test, which will execute on the development machine (host).
- *
- * See [testing documentation](http://d.android.com/tools/testing).
- */
-class ExampleUnitTest {
-    @Test
-    fun addition_isCorrect() {
-        assertEquals(4, 2 + 2)
-    }
-}
+fun RestaurantEntity.toDomain() = RestaurantDomainModel(
+    restaurantName = this.name,
+    restaurantDeliveryCost = this.deliveryCosts,
+    restaurantDistance = this.distance,
+    restaurantMinCost = this.minCost,
+    restaurantRating = this.ratingAverage,
+    restaurantStatus = this.status
+)

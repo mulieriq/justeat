@@ -13,17 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.justeat.data.data.dao
+package com.justeat.domain.usecases
 
-import androidx.room.Dao
-import androidx.room.RawQuery
-import androidx.sqlite.db.SupportSQLiteQuery
-import com.justeat.data.data.entity.RestaurantEntity
+import com.justeat.domain.model.RestaurantDomainModel
+import com.justeat.domain.repository.RestaurantRepository
 import kotlinx.coroutines.flow.Flow
 
-@Dao
-interface RestaurantDao : BaseDao<RestaurantEntity> {
+typealias RestaurantBaseUseCase = BaseUseCase<Unit, Flow<List<RestaurantDomainModel>>>
 
-    @RawQuery(observedEntities = [RestaurantEntity::class])
-    fun fetchRestaurants(query: SupportSQLiteQuery): Flow<List<RestaurantEntity>>
+class RestaurantsUseCase(
+    private val restaurantRepository: RestaurantRepository
+) : RestaurantBaseUseCase {
+
+    override suspend fun invoke(param: Unit): Flow<List<RestaurantDomainModel>> =
+        restaurantRepository.fetchRestaurants("name", "sortBy")
 }

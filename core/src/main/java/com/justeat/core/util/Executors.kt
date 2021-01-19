@@ -13,17 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.justeat.data.data.dao
+package com.justeat.core.util
 
-import androidx.room.Dao
-import androidx.room.RawQuery
-import androidx.sqlite.db.SupportSQLiteQuery
-import com.justeat.data.data.entity.RestaurantEntity
-import kotlinx.coroutines.flow.Flow
+import java.util.concurrent.Executors
 
-@Dao
-interface RestaurantDao : BaseDao<RestaurantEntity> {
+private val IO_EXECUTOR = Executors.newSingleThreadExecutor()
 
-    @RawQuery(observedEntities = [RestaurantEntity::class])
-    fun fetchRestaurants(query: SupportSQLiteQuery): Flow<List<RestaurantEntity>>
+/**
+ * Utility method to run blocks on a dedicated background thread, used for io/database work.
+ */
+fun ioThread(f: () -> Unit) {
+    IO_EXECUTOR.execute(f)
 }

@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.justeat.di
+package com.justeat.domain.usecases
 
-import org.koin.core.module.Module
-
-val appModules: List<Module> = listOf()
+interface BaseUseCase<in Parameter, out Result> {
+    suspend operator fun invoke(params: Parameter): Result
+}

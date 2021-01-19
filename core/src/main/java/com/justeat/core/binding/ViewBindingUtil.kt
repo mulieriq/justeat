@@ -37,13 +37,13 @@ fun showFormattedCurrency(view: TextView, amount: Int) {
 }
 
 @BindingAdapter(value = ["formattedLocation"])
-fun showFormattedLocation(view: TextView, distance: Int) {
+fun showFormattedLocation(view: TextView, distance: String) {
     when {
-        view.context != null && !TextUtils.isEmpty(distance.toString()) -> {
+        view.context != null && !TextUtils.isEmpty(distance) -> {
             view.text =
                 String.format(
                     "%d %s",
-                    distance.formatLocationToKms(),
+                    distance.toFloat().toInt().formatLocationToKms(),
                     view.context.getString(R.string.distance_kilometers)
                 )
         }

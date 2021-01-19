@@ -13,17 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.justeat.data.data.dao
+package com.justeat.presentation.di
 
-import androidx.room.Dao
-import androidx.room.RawQuery
-import androidx.sqlite.db.SupportSQLiteQuery
-import com.justeat.data.data.entity.RestaurantEntity
-import kotlinx.coroutines.flow.Flow
+import com.justeat.presentation.ui.viewmodel.RestaurantsViewModel
+import org.koin.core.module.Module
+import org.koin.dsl.module
 
-@Dao
-interface RestaurantDao : BaseDao<RestaurantEntity> {
-
-    @RawQuery(observedEntities = [RestaurantEntity::class])
-    fun fetchRestaurants(query: SupportSQLiteQuery): Flow<List<RestaurantEntity>>
+private val viewModelModules: Module = module {
+    single { RestaurantsViewModel(get()) }
 }
+
+val presentationModule: List<Module> = listOf(
+    viewModelModules
+)

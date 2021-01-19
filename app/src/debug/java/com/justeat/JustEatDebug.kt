@@ -13,12 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.marketforce
+package com.justeat
 
 import android.os.Build
 import android.os.StrictMode
 
-class JustEatDebug : JustEat() {
+open class JustEatDebug : JustEat() {
 
     override fun onCreate() {
         super.onCreate()
