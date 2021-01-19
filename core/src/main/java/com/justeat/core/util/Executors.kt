@@ -13,20 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.justeat.domain
+package com.justeat.core.util
 
-import org.junit.Test
+import java.util.concurrent.Executors
 
-import org.junit.Assert.*
+private val IO_EXECUTOR = Executors.newSingleThreadExecutor()
 
 /**
- * Example local unit test, which will execute on the development machine (host).
- *
- * See [testing documentation](http://d.android.com/tools/testing).
+ * Utility method to run blocks on a dedicated background thread, used for io/database work.
  */
-class ExampleUnitTest {
-    @Test
-    fun addition_isCorrect() {
-        assertEquals(4, 2 + 2)
-    }
+fun ioThread(f: () -> Unit) {
+    IO_EXECUTOR.execute(f)
 }

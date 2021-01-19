@@ -13,16 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.justeat.data.data.entity
+package com.justeat.core.util
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import android.content.res.AssetManager
 
-@Entity
-data class Restaurant(
-    @PrimaryKey(autoGenerate = true)
-    var id: Long,
-    var userId: String,
-    var firstName: String,
-    var lastName: String
-)
+fun AssetManager.readFile(fileName: String) = open(fileName)
+    .bufferedReader()
+    .use { it.readText() }
