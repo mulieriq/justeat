@@ -15,10 +15,7 @@
  */
 package com.justeat.data.data.dao
 
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Update
+import androidx.room.*
 
 interface BaseDao<T> {
 
@@ -39,4 +36,8 @@ interface BaseDao<T> {
 
     @Delete
     suspend fun delete(item: T)
+
+    @Transaction
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertFromAsset(items: List<T>)
 }
