@@ -18,11 +18,17 @@ package com.justeat.presentation.mappers
 import com.justeat.domain.model.RestaurantDomainModel
 import com.justeat.presentation.data.Restaurant
 
-fun Restaurant.toDomain() = RestaurantDomainModel(
+internal fun Restaurant.toDomain() = RestaurantDomainModel(
+    restaurantId,
     restaurantName,
     restaurantStatus,
+    restaurantBestMatch,
+    restaurantNewest,
     restaurantRating,
     restaurantDistance,
+    restaurantPopularity,
+    restaurantAverageProductPrice,
+    restaurantDeliveryCost,
     restaurantMinCost,
-    restaurantDeliveryCost
+    isFavourite
 )

@@ -19,14 +19,17 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.justeat.domain.usecases.FavouriteUseCase
 import com.justeat.domain.usecases.RestaurantsUseCase
 import com.justeat.presentation.data.Restaurant
+import com.justeat.presentation.mappers.toDomain
 import com.justeat.presentation.mappers.toPresentation
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class RestaurantsViewModel(
-    private val restaurantsUseCase: RestaurantsUseCase
+    private val restaurantsUseCase: RestaurantsUseCase,
+    private val favouriteUseCase: FavouriteUseCase
 ) : ViewModel() {
 
     private var _restaurants = MutableLiveData<List<Restaurant>>()
@@ -37,6 +40,12 @@ class RestaurantsViewModel(
             restaurantsUseCase.invoke("").collect { restaurants ->
                 _restaurants.value = restaurants.map { it.toPresentation() }
             }
+        }
+    }
+
+    fun favouriteRestaurant(restaurant: Restaurant) {
+        viewModelScope.launch {
+            favouriteUseCase.invoke(restaurant.toDomain())
         }
     }
 }
