@@ -53,7 +53,7 @@ class RecyclerviewScrollActions(private val original: ScrollToAction = ScrollToA
 class MainActivityTest : KoinTest {
 
     @Test
-    fun test_check_not_displayed() = runBlocking {
+    fun test_check_restaurants_displayed() = runBlocking {
 
         ActivityScenario.launch(MainActivity::class.java)
 
@@ -73,9 +73,6 @@ class MainActivityTest : KoinTest {
                     isVisible()
                     restaurantName {
                         hasText(fakeRestaurant.first().restaurantName)
-                    }
-                    restaurantDistance {
-                        hasText(fakeRestaurant.first().restaurantDistance)
                     }
                 }
             }
