@@ -101,7 +101,7 @@
                 android:textSize="14sp"
                 android:textStyle="bold"
                 app:drawableStartCompat="@drawable/ic_location_outlined_gray"
-                app:formattedLocation="@{restaurant.restaurantDistance}"
+                app:formattedLocation="@{Double.toString(restaurant.restaurantDistance)}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/textViewRating"
