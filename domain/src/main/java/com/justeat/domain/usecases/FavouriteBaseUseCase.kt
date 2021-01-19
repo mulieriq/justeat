@@ -13,20 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.justeat.data
+package com.justeat.domain.usecases
 
-import org.junit.Test
+import com.justeat.domain.model.RestaurantDomainModel
+import com.justeat.domain.repository.RestaurantRepository
 
-import org.junit.Assert.*
+typealias FavouriteBaseUseCase = BaseUseCase<RestaurantDomainModel, Unit>
 
-/**
- * Example local unit test, which will execute on the development machine (host).
- *
- * See [testing documentation](http://d.android.com/tools/testing).
- */
-class ExampleUnitTest {
-    @Test
-    fun addition_isCorrect() {
-        assertEquals(4, 2 + 2)
+class FavouriteUseCase(
+    private val restaurantRepository: RestaurantRepository
+) : FavouriteBaseUseCase {
+
+    override suspend fun invoke(params: RestaurantDomainModel) {
+        restaurantRepository.favouriteRestaurant(params)
     }
 }

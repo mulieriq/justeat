@@ -18,5 +18,18 @@ package com.justeat.fake
 import com.justeat.domain.model.RestaurantDomainModel
 
 val fakeRestaurant = listOf(
-    RestaurantDomainModel("Tanoshii Sushi", "open", 4.5, 1190.00, 1000, 200)
+    RestaurantDomainModel(
+        0L,
+        "Tanoshii Sushi",
+        "open",
+        7.0,
+        250.0,
+        4.0,
+        1190.00,
+        6.0,
+        912,
+        0,
+        1000,
+        true
+    )
 )

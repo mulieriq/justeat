@@ -17,6 +17,7 @@ package com.justeat.presentation.ui.view
 
 import android.os.Bundle
 import com.justeat.presentation.R
+import com.justeat.presentation.data.Restaurant
 import com.justeat.presentation.databinding.ActivityMainBinding
 import com.justeat.presentation.ui.adapter.RestaurantRecyclerViewAdapter
 import com.justeat.presentation.ui.base.BindingActivity
@@ -33,12 +34,21 @@ class MainActivity : BindingActivity<ActivityMainBinding>() {
         super.onCreate(savedInstanceState)
         binding.lifecycleOwner = this
 
-        restaurantRecyclerViewAdapter = RestaurantRecyclerViewAdapter()
+        restaurantRecyclerViewAdapter = RestaurantRecyclerViewAdapter { restaurant ->
+            onFavourite(restaurant)
+        }
         recyclerView.adapter = restaurantRecyclerViewAdapter
+
+        restaurantsViewModel.fetchRestaurants("", "")
 
         restaurantsViewModel.restaurants.observe(this) { restaurants ->
             restaurantRecyclerViewAdapter.submitList(restaurants)
         }
+    }
+
+    private fun onFavourite(restaurant: Restaurant) {
+        val updateRestaurant = restaurant.copy(isFavourite = true)
+        restaurantsViewModel.favouriteRestaurant(updateRestaurant)
     }
 
     override val layoutResId: Int

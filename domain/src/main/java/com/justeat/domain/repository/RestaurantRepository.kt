@@ -24,4 +24,6 @@ interface RestaurantRepository {
         name: String? = null,
         sortBy: String? = null
     ): Flow<List<RestaurantDomainModel>>
+
+    suspend fun favouriteRestaurant(restaurantDomainModel: RestaurantDomainModel)
 }

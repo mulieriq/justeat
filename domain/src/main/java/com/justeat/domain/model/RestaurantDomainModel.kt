@@ -16,10 +16,16 @@
 package com.justeat.domain.model
 
 data class RestaurantDomainModel(
+    val restaurantId: Long,
     val restaurantName: String,
     val restaurantStatus: String,
+    val restaurantBestMatch: Double,
+    val restaurantNewest: Double,
     val restaurantRating: Double,
     val restaurantDistance: Double,
+    val restaurantPopularity: Double,
+    val restaurantAverageProductPrice: Int,
+    val restaurantDeliveryCost: Int,
     val restaurantMinCost: Int,
-    val restaurantDeliveryCost: Int
+    val isFavourite: Boolean
 )

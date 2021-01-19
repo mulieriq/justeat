@@ -31,7 +31,8 @@ data class RestaurantEntity(
     var popularity: Double,
     var averageProductPrice: Int,
     var deliveryCosts: Int,
-    var minCost: Int
+    var minCost: Int,
+    val isFavourite: Boolean
 )
 
 data class RestaurantList(val restaurants: List<RestaurantEntity>)
