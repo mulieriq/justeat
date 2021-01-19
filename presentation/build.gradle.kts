@@ -81,6 +81,7 @@ dependencies {
     // UI Tests
     androidTestImplementation(TestLibraries.espresso)
     androidTestImplementation(TestLibraries.kakao)
+    androidTestImplementation(TestLibraries.androidMockK)
 
     // Instrumentation Tests
     androidTestImplementation(TestLibraries.koinTest)

@@ -13,10 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.justeat.presentation.fake
+package com.justeat.fake
 
-import com.justeat.presentation.data.Restaurant
+import com.justeat.domain.model.RestaurantDomainModel
 
 val fakeRestaurant = listOf(
-    Restaurant("Tanoshii Sushi", "open", 4.5, 1190, 1000, 200)
+    RestaurantDomainModel("Tanoshii Sushi", "open", 4.5, 1190.00, 1000, 200)
 )

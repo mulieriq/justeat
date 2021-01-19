@@ -13,66 +13,81 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.justeat.presentation.ui.view
+package com.justeat.ui.view
 
 import android.view.View
-import androidx.recyclerview.widget.RecyclerView
 import androidx.test.core.app.ActivityScenario
-import androidx.test.espresso.ViewAction
-import androidx.test.espresso.action.ScrollToAction
-import androidx.test.espresso.matcher.ViewMatchers
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
-import androidx.test.runner.AndroidJUnit4
+import com.agoda.kakao.chipgroup.KChipGroup
 import com.agoda.kakao.recycler.KRecyclerItem
 import com.agoda.kakao.recycler.KRecyclerView
 import com.agoda.kakao.screen.Screen
 import com.agoda.kakao.text.KTextView
+import com.justeat.domain.repository.RestaurantRepository
+import com.justeat.domain.usecases.RestaurantsUseCase
+import com.justeat.fake.fakeRestaurant
 import com.justeat.presentation.R
-import com.justeat.presentation.fake.fakeRestaurant
+import com.justeat.presentation.ui.view.MainActivity
+import com.justeat.presentation.ui.viewmodel.RestaurantsViewModel
+import io.mockk.clearMocks
+import io.mockk.coEvery
+import io.mockk.mockk
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.runBlocking
-import org.hamcrest.CoreMatchers
 import org.hamcrest.Matcher
+import org.junit.After
+import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.koin.test.KoinTest
-
-class RecyclerviewScrollActions(private val original: ScrollToAction = ScrollToAction()) :
-    ViewAction by original {
-
-    override fun getConstraints(): Matcher<View> = CoreMatchers.anyOf(
-        CoreMatchers.allOf(
-            ViewMatchers.withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE),
-            ViewMatchers.isDescendantOfA(ViewMatchers.isAssignableFrom(RecyclerView::class.java))
-        ),
-        original.constraints
-    )
-}
+import org.koin.test.mock.declare
 
 @LargeTest
 @RunWith(AndroidJUnit4::class)
 class MainActivityTest : KoinTest {
 
+    private val restaurantRepository = mockk<RestaurantRepository>(relaxUnitFun = true)
+    private lateinit var restaurantUseCase: RestaurantsUseCase
+
+    @Before
+    fun setup() {
+        restaurantUseCase = RestaurantsUseCase(restaurantRepository)
+    }
+
+    @After
+    fun tearDown() {
+        clearMocks(restaurantRepository)
+    }
+
     @Test
     fun test_check_restaurants_displayed() = runBlocking {
+
+        coEvery {
+            restaurantUseCase.invoke(any())
+        } returns flowOf(fakeRestaurant)
+
+        declare {
+            RestaurantsViewModel(
+                restaurantUseCase
+            )
+        }
 
         ActivityScenario.launch(MainActivity::class.java)
 
         Screen.onScreen<JustEatScreen> {
 
-            this.restaurants {
+            chips.isDisplayed()
 
-                act {
-                    RecyclerviewScrollActions()
-                }
-
-                Screen.idle(3000)
-
+            restaurants {
                 isDisplayed()
-
                 firstChild<Item> {
                     isVisible()
                     restaurantName {
                         hasText(fakeRestaurant.first().restaurantName)
+                    }
+                    textViewRestaurantState {
+                        hasText(fakeRestaurant.first().restaurantStatus)
                     }
                 }
             }
@@ -87,13 +102,14 @@ class MainActivityTest : KoinTest {
                 withId(R.id.recyclerView)
             },
             itemTypeBuilder = {
-                itemType(::Item)
+                itemType(MainActivityTest::Item)
             }
         )
+        val chips = KChipGroup { withId(R.id.chipGroup) }
     }
 
     class Item(parent: Matcher<View>) : KRecyclerItem<Item>(parent) {
         val restaurantName = KTextView { withId(R.id.textViewRestaurantName) }
-        val restaurantDistance = KTextView { withId(R.id.textViewRestaurantDistance) }
+        val textViewRestaurantState = KTextView { withId(R.id.textViewRestaurantState) }
     }
 }

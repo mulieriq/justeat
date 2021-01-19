@@ -34,7 +34,7 @@ class RestaurantsViewModel(
 
     fun fetchRestaurants(name: String?, sortBy: String?) {
         viewModelScope.launch {
-            restaurantsUseCase.invoke(Unit).collect { restaurants ->
+            restaurantsUseCase.invoke("").collect { restaurants ->
                 _restaurants.value = restaurants.map { it.toPresentation() }
             }
         }

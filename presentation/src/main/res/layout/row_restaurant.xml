@@ -40,6 +40,7 @@
                     android:src="@drawable/ic_favourite_unselected" />
 
                 <TextView
+                    android:id="@+id/textViewRestaurantState"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
