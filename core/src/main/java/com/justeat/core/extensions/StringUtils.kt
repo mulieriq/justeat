@@ -15,23 +15,8 @@
  */
 package com.justeat.core.extensions
 
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
-import timber.log.Timber
 import java.text.NumberFormat
 import java.util.*
-
-inline fun <reified T> String.deserializeJsonToList(): MutableList<T> {
-    return try {
-        Gson().fromJson(
-            this,
-            TypeToken.getParameterized(MutableList::class.java, T::class.java).type
-        )
-    } catch (e: Exception) {
-        Timber.e(e)
-        mutableListOf()
-    }
-}
 
 fun Number.formatCurrency(): String = NumberFormat.getNumberInstance(Locale.US).format(this)
 
