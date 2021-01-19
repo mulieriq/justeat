@@ -13,14 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.justeat.presentation.runner
+package com.justeat.runner
 
 import android.app.Application
 import android.content.Context
 import android.os.Bundle
 import android.os.StrictMode
 import androidx.test.runner.AndroidJUnitRunner
-import com.justeat.presentation.JustEatTest
+import com.justeat.JustEatTest
 
 class MockTestRunner : AndroidJUnitRunner() {
 
