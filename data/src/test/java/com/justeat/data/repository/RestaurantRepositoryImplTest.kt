@@ -23,7 +23,6 @@ import java.io.IOException
 @RunWith(AndroidJUnit4::class)
 @Config(manifest = Config.NONE, sdk = [28])
 class RestaurantRepositoryImplTest {
-
     private lateinit var db: Database
     private lateinit var restaurantDao: RestaurantDao
     private lateinit var repo: RestaurantRepository
@@ -31,15 +30,12 @@ class RestaurantRepositoryImplTest {
     @Before
     fun createDb() {
         val context = ApplicationProvider.getApplicationContext<Context>()
-
         db = Room.inMemoryDatabaseBuilder(context, Database::class.java)
             .allowMainThreadQueries()
             .build()
-
-        val restaurantsJson = javaClass.classLoader.getResource("data.json").readText()
+        val restaurantsJson = javaClass.classLoader.getResource("test.json").readText()
         val mappedList: RestaurantList =
             restaurantsJson.deserializeRestaurants()
-
         restaurantDao = db.restaurantDao()
         restaurantDao.insertFromAsset(mappedList.restaurants)
         repo = RestaurantRepositoryImpl(restaurantDao)
