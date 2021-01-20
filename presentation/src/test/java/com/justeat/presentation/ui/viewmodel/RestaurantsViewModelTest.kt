@@ -15,4 +15,44 @@
  */
 package com.justeat.presentation.ui.viewmodel
 
-class RestaurantsViewModelTest
+import com.jraska.livedata.test
+import com.justeat.domain.usecases.FavouriteUseCase
+import com.justeat.domain.usecases.FilterRestaurantsUseCase
+import com.justeat.domain.usecases.RestaurantsUseCase
+import com.justeat.domain.usecases.SearchRestaurantUseCase
+import com.justeat.presentation.BaseViewModelTest
+import com.justeat.presentation.utils.fakeRestaurant
+import io.mockk.coEvery
+import io.mockk.coVerify
+import io.mockk.mockk
+import kotlinx.coroutines.flow.flowOf
+import org.junit.Before
+import org.junit.Test
+
+class RestaurantViewModelTest : BaseViewModelTest() {
+
+    private val restaurantUseCase = mockk<RestaurantsUseCase>()
+    private val favouriteUseCase = mockk<FavouriteUseCase>()
+    private val searchUseCase = mockk<SearchRestaurantUseCase>()
+    private val filterUseCase = mockk<FilterRestaurantsUseCase>()
+
+    private lateinit var restaurantsViewModel: RestaurantsViewModel
+
+    @Before
+    fun setup() {
+        restaurantsViewModel =
+            RestaurantsViewModel(restaurantUseCase, favouriteUseCase, searchUseCase, filterUseCase)
+    }
+
+    @Test
+    fun `test list of restaurants is fetched`() {
+
+        coEvery { restaurantUseCase.invoke(any()) } returns flowOf(fakeRestaurant)
+
+        restaurantsViewModel.fetchRestaurants()
+
+        coVerify { restaurantUseCase.invoke(any()) }
+        restaurantsViewModel.restaurants.test().assertHasValue()
+    }
+
+}
