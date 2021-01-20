@@ -25,7 +25,10 @@ import com.agoda.kakao.recycler.KRecyclerView
 import com.agoda.kakao.screen.Screen
 import com.agoda.kakao.text.KTextView
 import com.justeat.domain.repository.RestaurantRepository
+import com.justeat.domain.usecases.FavouriteUseCase
+import com.justeat.domain.usecases.FilterRestaurantsUseCase
 import com.justeat.domain.usecases.RestaurantsUseCase
+import com.justeat.domain.usecases.SearchRestaurantUseCase
 import com.justeat.fake.fakeRestaurant
 import com.justeat.presentation.R
 import com.justeat.presentation.ui.view.MainActivity
@@ -48,11 +51,18 @@ import org.koin.test.mock.declare
 class MainActivityTest : KoinTest {
 
     private val restaurantRepository = mockk<RestaurantRepository>(relaxUnitFun = true)
+
     private lateinit var restaurantUseCase: RestaurantsUseCase
+    private lateinit var favouriteUseCase: FavouriteUseCase
+    private lateinit var searchUseCase: SearchRestaurantUseCase
+    private lateinit var filterUseCase: FilterRestaurantsUseCase
 
     @Before
     fun setup() {
         restaurantUseCase = RestaurantsUseCase(restaurantRepository)
+        favouriteUseCase = FavouriteUseCase(restaurantRepository)
+        searchUseCase = SearchRestaurantUseCase(restaurantRepository)
+        filterUseCase = FilterRestaurantsUseCase(restaurantRepository)
     }
 
     @After
@@ -69,7 +79,10 @@ class MainActivityTest : KoinTest {
 
         declare {
             RestaurantsViewModel(
-                restaurantUseCase
+                restaurantUseCase,
+                favouriteUseCase,
+                searchUseCase,
+                filterUseCase
             )
         }
 
