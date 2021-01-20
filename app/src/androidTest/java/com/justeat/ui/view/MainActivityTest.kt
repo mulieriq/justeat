@@ -24,7 +24,6 @@ import com.agoda.kakao.recycler.KRecyclerItem
 import com.agoda.kakao.recycler.KRecyclerView
 import com.agoda.kakao.screen.Screen
 import com.agoda.kakao.text.KTextView
-import com.justeat.domain.repository.RestaurantRepository
 import com.justeat.domain.usecases.FavouriteUseCase
 import com.justeat.domain.usecases.FilterRestaurantsUseCase
 import com.justeat.domain.usecases.RestaurantsUseCase
@@ -40,7 +39,6 @@ import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.runBlocking
 import org.hamcrest.Matcher
 import org.junit.After
-import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.koin.test.KoinTest
@@ -50,31 +48,21 @@ import org.koin.test.mock.declare
 @RunWith(AndroidJUnit4::class)
 class MainActivityTest : KoinTest {
 
-    private val restaurantRepository = mockk<RestaurantRepository>(relaxUnitFun = true)
-
-    private lateinit var restaurantUseCase: RestaurantsUseCase
-    private lateinit var favouriteUseCase: FavouriteUseCase
-    private lateinit var searchUseCase: SearchRestaurantUseCase
-    private lateinit var filterUseCase: FilterRestaurantsUseCase
-
-    @Before
-    fun setup() {
-        restaurantUseCase = RestaurantsUseCase(restaurantRepository)
-        favouriteUseCase = FavouriteUseCase(restaurantRepository)
-        searchUseCase = SearchRestaurantUseCase(restaurantRepository)
-        filterUseCase = FilterRestaurantsUseCase(restaurantRepository)
-    }
+    private val restaurantUseCase = mockk<RestaurantsUseCase>(relaxUnitFun = true)
+    private val favouriteUseCase = mockk<FavouriteUseCase>(relaxUnitFun = true)
+    private val searchUseCase = mockk<SearchRestaurantUseCase>(relaxUnitFun = true)
+    private val filterUseCase = mockk<FilterRestaurantsUseCase>(relaxUnitFun = true)
 
     @After
     fun tearDown() {
-        clearMocks(restaurantRepository)
+        clearMocks(restaurantUseCase, favouriteUseCase, searchUseCase, filterUseCase)
     }
 
     @Test
     fun test_check_restaurants_displayed() = runBlocking {
 
         coEvery {
-            restaurantUseCase.invoke(any())
+            restaurantUseCase.invoke(Unit)
         } returns flowOf(fakeRestaurant)
 
         declare {
