@@ -103,7 +103,7 @@
                 android:textSize="14sp"
                 android:textStyle="bold"
                 app:drawableStartCompat="@drawable/ic_location_outlined_gray"
-                app:formattedLocation="@{Double.toString(restaurant.restaurantDistance)}"
+                app:formattedLocation="@{restaurant.restaurantDistance}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/textViewRating"
@@ -142,6 +142,8 @@
                 app:drawableStartCompat="@drawable/ic_delivery_cost_outlined_gray"
                 app:formattedCurrency="@{restaurant.restaurantDeliveryCost}"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/textViewMinimumCost"
                 app:layout_constraintTop_toBottomOf="@+id/textViewRestaurantName"
                 tools:text="@sample/data.json/restaurants/sortingValues/deliveryCosts" />

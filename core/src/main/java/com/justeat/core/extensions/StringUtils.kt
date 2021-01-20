@@ -18,6 +18,9 @@ package com.justeat.core.extensions
 import java.text.NumberFormat
 import java.util.*
 
-fun Number.formatCurrency(): String = NumberFormat.getNumberInstance(Locale.US).format(this)
+fun Number.formatCurrency(): String =
+    NumberFormat.getNumberInstance(Locale.getDefault()).format(this)
 
-fun Int.formatLocationToKms(): Int = this / 1000 // TODO - Return with 3 decimal point
+fun Double.formatLocationToKms(): String =
+    NumberFormat.getNumberInstance(Locale.getDefault()).apply { maximumFractionDigits = 3 }
+        .format(this) // https://www.smartick.com/blog/math/learning-resources/decimal-separators/

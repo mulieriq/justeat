@@ -55,7 +55,7 @@ class MainActivity : BindingActivity<ActivityMainBinding>() {
     }
 
     private fun onFavourite(restaurant: Restaurant) {
-        val updateRestaurant = restaurant.copy(isFavourite = true)
+        val updateRestaurant = restaurant.copy(isFavourite = !restaurant.isFavourite)
         restaurantsViewModel.favouriteRestaurant(updateRestaurant)
     }
 
