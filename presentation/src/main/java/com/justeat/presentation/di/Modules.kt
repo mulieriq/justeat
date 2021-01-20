@@ -20,7 +20,7 @@ import org.koin.core.module.Module
 import org.koin.dsl.module
 
 private val viewModelModules: Module = module {
-    single { RestaurantsViewModel(get(), get()) }
+    single { RestaurantsViewModel(get(), get(), get(), get()) }
 }
 
 val presentationModule: List<Module> = listOf(
