@@ -16,13 +16,17 @@
 package com.justeat.domain.di
 
 import com.justeat.domain.usecases.FavouriteUseCase
+import com.justeat.domain.usecases.FilterRestaurantsUseCase
 import com.justeat.domain.usecases.RestaurantsUseCase
+import com.justeat.domain.usecases.SearchRestaurantUseCase
 import org.koin.core.module.Module
 import org.koin.dsl.module
 
 private val useCaseModule: Module = module {
     single { RestaurantsUseCase(get()) }
     single { FavouriteUseCase(get()) }
+    single { SearchRestaurantUseCase(get()) }
+    single { FilterRestaurantsUseCase(get()) }
 }
 
 val domainModules: List<Module> = listOf(
