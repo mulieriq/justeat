@@ -51,6 +51,13 @@ class RestaurantRepositoryImpl(
             END ASC
         """.trimIndent()
 
+        // Favourites should come first
+        queryString += """
+            , CASE WHEN isFavourite = 1 THEN 1
+                 ELSE 2
+            END ASC
+        """.trimIndent()
+
         // Sort by other selection
         if (sortBy != null) {
             queryString += ", $sortBy DESC"

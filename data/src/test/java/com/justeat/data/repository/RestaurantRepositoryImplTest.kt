@@ -23,6 +23,7 @@ import com.justeat.data.data.Database
 import com.justeat.data.data.dao.RestaurantDao
 import com.justeat.data.data.deserializeRestaurants
 import com.justeat.data.data.entity.RestaurantList
+import com.justeat.domain.model.RestaurantDomainModel
 import com.justeat.domain.repository.RestaurantRepository
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
@@ -81,5 +82,28 @@ class RestaurantRepositoryImplTest {
     fun restaurantsWithFilter() = runBlocking {
         val restaurants = repo.fetchRestaurants(name = "aarti").first()
         assertThat(restaurants.size, `is`(1))
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun restaurantsWithFavourites() = runBlocking {
+        repo.favouriteRestaurant(
+            RestaurantDomainModel(
+                6,
+                "Aarti 2",
+                "open",
+                5.0,
+                153.0,
+                4.5,
+                1605.0,
+                44.0,
+                922,
+                250,
+                500,
+                true
+            )
+        )
+        val restaurants = repo.fetchRestaurants(sortBy = "newest").first()
+        assertThat(restaurants.first().restaurantName, `is`("Aarti 2"))
     }
 }
