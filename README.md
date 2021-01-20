@@ -83,3 +83,32 @@ Develop an application that visualizes a restaurant list:
 ## Dependencies
 
 All the dependencies (external libraries) are defined in the single place - Gradle `buildSrc` folder. This approach allows to easily manage dependencies and use the same dependency version across all modules.
+
+## UI and Unit Tests
+
+The screenshot below shows the tests that are done on the repo:
+
+#### UI Tests
+
+The UI Tests are tested on an Emulator Running Android 10 (API 29) - Might be flaky on some API levels.
+
+<img src="https://github.com/jumaallan/justeat/blob/develop/screenshots/ui_tests.gif" width="320"/>
+
+The UI tests are written using [Kakao](https://github.com/agoda-com/Kakao)
+
+<img src="https://github.com/jumaallan/justeat/blob/develop/screenshots/ui_tests.png"/>
+
+#### Unit Tests on Data Layer
+
+The Unit Tests here basically test the Repository Implementation
+
+<img src="https://github.com/jumaallan/justeat/blob/develop/screenshots/unit_test_data.png"/>
+
+#### Unit Tests on Presentation Layer
+
+The Unit Tests here test ViewModel
+
+<img src="https://github.com/jumaallan/justeat/blob/develop/screenshots/unit_test_presentation.png"/>
+
+More tests can be added
+
