@@ -54,5 +54,4 @@ class RestaurantViewModelTest : BaseViewModelTest() {
         coVerify { restaurantUseCase.invoke(any()) }
         restaurantsViewModel.restaurants.test().assertHasValue()
     }
-
 }
