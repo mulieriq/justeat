@@ -15,15 +15,6 @@ android {
         minSdkVersion(AndroidSdk.minSdkVersion)
         targetSdkVersion(AndroidSdk.targetSdkVersion)
         vectorDrawables.useSupportLibrary = true
-        testInstrumentationRunner = "com.justeat.presentation.runner.MockTestRunner"
-    }
-
-    testOptions {
-        animationsDisabled = true
-        unitTests.apply {
-            isReturnDefaultValues = true
-            isIncludeAndroidResources = false
-        }
     }
 
     compileOptions {
@@ -54,6 +45,7 @@ android {
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     implementation(project(BuildModules.coreModule))
+    implementation(project(BuildModules.dataModule))
     implementation(project(BuildModules.domainModule))
 
     implementation(Libraries.kotlinStdLib)
@@ -64,6 +56,9 @@ dependencies {
     implementation(Libraries.appCompat)
     implementation(Libraries.swiperefreshlayout)
     implementation(Libraries.material)
+
+    // Lottie
+    implementation(Libraries.lottie)
 
     // Lifecycle
     implementation(Libraries.viewModel)
@@ -81,7 +76,6 @@ dependencies {
     // UI Tests
     androidTestImplementation(TestLibraries.espresso)
     androidTestImplementation(TestLibraries.kakao)
-    androidTestImplementation(TestLibraries.androidMockK)
 
     // Instrumentation Tests
     androidTestImplementation(TestLibraries.koinTest)
@@ -89,4 +83,9 @@ dependencies {
 
     // Unit Tests
     testImplementation(TestLibraries.jUnit)
+    testImplementation(TestLibraries.coroutinesTest)
+    testImplementation(TestLibraries.archComponentTest)
+    testImplementation(TestLibraries.liveDataTesting)
+    testImplementation(TestLibraries.mockK)
+    testImplementation(TestLibraries.koinTest)
 }

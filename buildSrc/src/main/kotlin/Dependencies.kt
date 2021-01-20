@@ -27,6 +27,9 @@ object Versions {
     const val timber = "4.7.1"
     const val leakCanary = "2.4"
 
+    // Lottie - sleek animations
+    const val lottie = "3.4.0"
+
     // Kotlin
     const val kotlinVersion = "1.4.0"
     const val coreKtx = "1.5.0-alpha02"
@@ -116,6 +119,9 @@ object Libraries {
     // Kotlin
     const val kotlinStdLib = "org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlinVersion}"
     const val coreKtx = "androidx.core:core-ktx:${Versions.coreKtx}"
+
+    // Lottie
+    const val lottie = "com.airbnb.android:lottie:${Versions.lottie}"
 }
 
 object TestLibraries {

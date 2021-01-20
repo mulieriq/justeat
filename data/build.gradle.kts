@@ -24,6 +24,11 @@ android {
         jvmTarget = "1.8"
     }
 
+    testOptions {
+        unitTests.isReturnDefaultValues = true
+        unitTests.isIncludeAndroidResources = true
+    }
+
     buildTypes {
         getByName("debug") {
             isDebuggable = true
