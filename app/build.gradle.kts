@@ -16,6 +16,9 @@ android {
     compileSdkVersion(AndroidSdk.compileSdkVersion)
     buildToolsVersion("30.0.2")
 
+    android.buildFeatures.dataBinding = true
+    android.buildFeatures.viewBinding = true
+
     defaultConfig {
         applicationId = "com.justeat"
         minSdkVersion(AndroidSdk.minSdkVersion)
@@ -23,7 +26,7 @@ android {
         versionCode = AndroidSdk.versionCode
         versionName = AndroidSdk.versionName
         vectorDrawables.useSupportLibrary = true
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "com.justeat.runner.MockTestRunner"
     }
 
     testOptions {
@@ -77,11 +80,29 @@ dependencies {
     implementation(Libraries.kotlinStdLib)
     implementation(Libraries.coreKtx)
 
+    // Material
+    implementation(Libraries.material)
+
     // DI - KOIN
     implementation(Libraries.koin)
     implementation(Libraries.koinViewModel)
 
+    // Lifecycle
+    implementation(Libraries.viewModel)
+    implementation(Libraries.livedata)
+    implementation(Libraries.lifecycle)
+    implementation(Libraries.viewModelSavedState)
+
     // Debug - for debug builds only
     implementation(Libraries.timber)
     debugImplementation(Libraries.leakCanary)
+
+    // UI Tests
+    androidTestImplementation(TestLibraries.espresso)
+    androidTestImplementation(TestLibraries.kakao)
+    androidTestImplementation(TestLibraries.androidMockK)
+
+    // Instrumentation Tests
+    androidTestImplementation(TestLibraries.koinTest)
+    androidTestImplementation(TestLibraries.androidXJUnit)
 }

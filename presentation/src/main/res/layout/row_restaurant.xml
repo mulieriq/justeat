@@ -26,27 +26,37 @@
             <FrameLayout
                 android:id="@+id/imageContainer"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="98dp"
+                android:background="@drawable/rounded_card_top"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/merchantImv"
-                    android:layout_width="match_parent"
-                    android:layout_height="98dp"
-                    android:background="@drawable/rounded_card_top"
-                    android:scaleType="centerCrop" />
+                <ImageView
+                    android:id="@+id/btnFavourite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top|right"
+                    android:layout_margin="16dp"
+                    android:src="@{restaurant.favourite ? @drawable/ic_favourite_selected : @drawable/ic_favourite_unselected}" />
 
-                <include
-                    android:id="@+id/itemOverlay"
-                    layout="@layout/restaurant_item_overlay"
-                    tools:visibility="visible" />
+                <TextView
+                    android:id="@+id/textViewRestaurantState"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_horizontal"
+                    android:text="@{restaurant.restaurantStatus}"
+                    android:textColor="#fff"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    tools:text="Closed" />
 
             </FrameLayout>
 
+
             <TextView
-                android:id="@+id/merchantTitleTxv"
+                android:id="@+id/textViewRestaurantName"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -54,6 +64,7 @@
                 android:layout_marginEnd="16dp"
                 android:ellipsize="end"
                 android:maxLines="1"
+                android:text="@{restaurant.restaurantName}"
                 android:textColor="#184857"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -63,80 +74,78 @@
                 tools:text="@sample/data.json/restaurants/name" />
 
             <TextView
-                android:id="@+id/ratingTxv"
+                android:id="@+id/textViewRating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="12dp"
                 android:layout_marginBottom="16dp"
-                android:drawablePadding="4dp"
+                android:drawablePadding="6dp"
+                android:text="@{Double.toString(restaurant.restaurantRating)}"
                 android:textColor="#757575"
                 android:textSize="14sp"
                 android:textStyle="bold"
                 app:drawableStartCompat="@drawable/ic_rating_star_outlined_gray"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/distanceTxv"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintHorizontal_chainStyle="spread"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/merchantTitleTxv"
+                app:layout_constraintTop_toBottomOf="@+id/textViewRestaurantName"
                 tools:text="@sample/data.json/restaurants/sortingValues/ratingAverage" />
 
             <TextView
-                android:id="@+id/distanceTxv"
+                android:id="@+id/textViewRestaurantDistance"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="12dp"
                 android:layout_marginBottom="16dp"
-                android:drawablePadding="4dp"
+                android:drawablePadding="6dp"
                 android:textColor="#757575"
                 android:textSize="14sp"
                 android:textStyle="bold"
                 app:drawableStartCompat="@drawable/ic_location_outlined_gray"
+                app:formattedLocation="@{restaurant.restaurantDistance}"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/minCostTxv"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/ratingTxv"
-                app:layout_constraintTop_toBottomOf="@+id/merchantTitleTxv"
+                app:layout_constraintStart_toEndOf="@+id/textViewRating"
+                app:layout_constraintTop_toBottomOf="@+id/textViewRestaurantName"
                 tools:text="@sample/data.json/restaurants/sortingValues/distance" />
 
             <TextView
-                android:id="@+id/minCostTxv"
+                android:id="@+id/textViewMinimumCost"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="12dp"
                 android:layout_marginBottom="16dp"
-                android:drawablePadding="4dp"
+                android:drawablePadding="6dp"
                 android:textColor="#757575"
                 android:textSize="14sp"
                 android:textStyle="bold"
                 app:drawableStartCompat="@drawable/ic_cash_outlined_gray"
+                app:formattedCurrency="@{restaurant.restaurantMinCost}"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/deliveryCostTxv"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/distanceTxv"
-                app:layout_constraintTop_toBottomOf="@+id/merchantTitleTxv"
+                app:layout_constraintStart_toEndOf="@id/textViewRestaurantDistance"
+                app:layout_constraintTop_toBottomOf="@+id/textViewRestaurantName"
                 tools:text="@sample/data.json/restaurants/sortingValues/minCost" />
 
             <TextView
-                android:id="@+id/deliveryCostTxv"
+                android:id="@+id/textViewDeliveryCost"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="12dp"
                 android:layout_marginBottom="16dp"
-                android:drawablePadding="4dp"
+                android:drawablePadding="6dp"
                 android:textColor="#757575"
                 android:textSize="14sp"
                 android:textStyle="bold"
                 app:drawableStartCompat="@drawable/ic_delivery_cost_outlined_gray"
+                app:formattedCurrency="@{restaurant.restaurantDeliveryCost}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/minCostTxv"
-                app:layout_constraintTop_toBottomOf="@+id/merchantTitleTxv"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/textViewMinimumCost"
+                app:layout_constraintTop_toBottomOf="@+id/textViewRestaurantName"
                 tools:text="@sample/data.json/restaurants/sortingValues/deliveryCosts" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

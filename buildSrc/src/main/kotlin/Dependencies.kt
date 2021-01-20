@@ -8,6 +8,9 @@ object Versions {
     // Firebase
     const val firebase = "26.0.0"
 
+    // Gson
+    const val gson = "2.9.0"
+
     //DI - KOIN
     const val koin = "2.1.5"
 
@@ -23,6 +26,9 @@ object Versions {
     // Logging - debug builds
     const val timber = "4.7.1"
     const val leakCanary = "2.4"
+
+    // Lottie - sleek animations
+    const val lottie = "3.4.0"
 
     // Kotlin
     const val kotlinVersion = "1.4.0"
@@ -82,6 +88,9 @@ object Libraries {
     const val bom = "com.google.firebase:firebase-bom:${Versions.firebase}"
     const val crashlytics = "com.google.firebase:firebase-crashlytics"
 
+    // Gson
+    const val gson = "com.squareup.retrofit2:converter-gson:${Versions.gson}"
+
     // DI - KOIN
     const val koin = "org.koin:koin-android:${Versions.koin}"
     const val koinViewModel = "org.koin:koin-androidx-viewmodel:${Versions.koin}"
@@ -110,6 +119,9 @@ object Libraries {
     // Kotlin
     const val kotlinStdLib = "org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlinVersion}"
     const val coreKtx = "androidx.core:core-ktx:${Versions.coreKtx}"
+
+    // Lottie
+    const val lottie = "com.airbnb.android:lottie:${Versions.lottie}"
 }
 
 object TestLibraries {

@@ -15,19 +15,59 @@
  */
 package com.justeat.data.data
 
+import android.content.Context
+import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.sqlite.db.SupportSQLiteDatabase
+import com.justeat.core.util.ioThread
+import com.justeat.core.util.readFile
 import com.justeat.data.data.dao.RestaurantDao
-import com.justeat.data.data.entity.Restaurant
+import com.justeat.data.data.entity.RestaurantEntity
+import com.justeat.data.data.entity.RestaurantList
 
 @androidx.room.Database(
     entities = [
-        Restaurant::class
+        RestaurantEntity::class
     ],
     version = 1,
     exportSchema = false
 )
 
 abstract class Database : RoomDatabase() {
+
+    companion object {
+        private val INSTANCE: Database? = null
+
+        fun getInstance(context: Context): Database {
+            return when (INSTANCE) {
+                null -> {
+                    Room.databaseBuilder(
+                        context,
+                        Database::class.java,
+                        "justeat-db"
+                    )
+                        .addCallback(object : Callback() {
+                            override fun onCreate(db: SupportSQLiteDatabase) {
+                                super.onCreate(db)
+                                // moving to a new thread
+                                ioThread {
+                                    val restaurantsJson =
+                                        context.assets.readFile("data.json")
+                                    val mappedList: RestaurantList =
+                                        restaurantsJson.deserializeRestaurants()
+                                    getInstance(context).restaurantDao()
+                                        .insertFromAsset(mappedList.restaurants)
+                                }
+                            }
+                        })
+                        .build()
+                }
+                else -> {
+                    INSTANCE
+                }
+            }
+        }
+    }
 
     abstract fun restaurantDao(): RestaurantDao
 }

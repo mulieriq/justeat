@@ -16,7 +16,14 @@
 package com.justeat.data.data.dao
 
 import androidx.room.Dao
-import com.justeat.data.data.entity.Restaurant
+import androidx.room.RawQuery
+import androidx.sqlite.db.SupportSQLiteQuery
+import com.justeat.data.data.entity.RestaurantEntity
+import kotlinx.coroutines.flow.Flow
 
 @Dao
-interface RestaurantDao : BaseDao<Restaurant>
+interface RestaurantDao : BaseDao<RestaurantEntity> {
+
+    @RawQuery(observedEntities = [RestaurantEntity::class])
+    fun fetchRestaurants(query: SupportSQLiteQuery): Flow<List<RestaurantEntity>>
+}

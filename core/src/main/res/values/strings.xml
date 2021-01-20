@@ -1,3 +1,4 @@
 <resources>
-  <string name="app_name">Just Eat</string>
+  <string name="currency_euro">€</string>
+  <string name="distance_kilometers">Kms</string>
 </resources>

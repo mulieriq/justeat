@@ -24,6 +24,11 @@ android {
         jvmTarget = "1.8"
     }
 
+    testOptions {
+        unitTests.isReturnDefaultValues = true
+        unitTests.isIncludeAndroidResources = true
+    }
+
     buildTypes {
         getByName("debug") {
             isDebuggable = true
@@ -54,6 +59,9 @@ dependencies {
 
     implementation(Libraries.kotlinStdLib)
     implementation(Libraries.coreKtx)
+
+    // Gson
+    implementation(Libraries.gson)
 
     // Room
     implementation(Libraries.room)
@@ -88,4 +96,5 @@ dependencies {
     testImplementation(TestLibraries.coroutinesTest)
     testImplementation(TestLibraries.archComponentTest)
     testImplementation(TestLibraries.liveDataTesting)
+    testImplementation(TestLibraries.roboelectric)
 }

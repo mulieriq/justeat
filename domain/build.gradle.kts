@@ -50,6 +50,14 @@ dependencies {
     // Debug - for debug builds only
     implementation(Libraries.timber)
 
+    // DI - KOIN
+    implementation(Libraries.koin)
+    implementation(Libraries.koinViewModel)
+
     // Unit Tests
     testImplementation(TestLibraries.jUnit)
+
+    // Coroutines
+    implementation(Libraries.coroutines)
+    implementation(Libraries.coroutinesAndroid)
 }

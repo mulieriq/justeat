@@ -15,19 +15,16 @@
  */
 package com.justeat.data.di
 
-import androidx.room.Room
 import com.justeat.data.data.Database
+import com.justeat.data.repository.RestaurantRepositoryImpl
+import com.justeat.domain.repository.RestaurantRepository
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.module.Module
 import org.koin.dsl.module
 
 private val databaseModule: Module = module {
     single {
-        Room.databaseBuilder(
-            androidContext(),
-            Database::class.java,
-            "justeat-db"
-        ).build()
+        Database.getInstance(context = androidContext())
     }
 }
 
@@ -35,7 +32,12 @@ private val daoModule: Module = module {
     single { get<Database>().restaurantDao() }
 }
 
+private val repositoryModule: Module = module {
+    single<RestaurantRepository> { RestaurantRepositoryImpl(get()) }
+}
+
 val dataModules: List<Module> = listOf(
     databaseModule,
-    daoModule
+    daoModule,
+    repositoryModule
 )

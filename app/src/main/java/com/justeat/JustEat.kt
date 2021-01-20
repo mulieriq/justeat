@@ -19,7 +19,8 @@ import android.app.Application
 import androidx.annotation.Nullable
 import com.justeat.core.util.CrashlyticsTree
 import com.justeat.data.di.dataModules
-import com.justeat.di.appModules
+import com.justeat.domain.di.domainModules
+import com.justeat.presentation.di.presentationModule
 import org.jetbrains.annotations.NotNull
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -44,8 +45,9 @@ open class JustEat : Application() {
                 androidLogger(Level.ERROR)
                 androidContext(applicationContext)
                 val modules = mutableListOf<Module>().apply {
-                    addAll(appModules)
                     addAll(dataModules)
+                    addAll(domainModules)
+                    addAll(presentationModule)
                 }
                 modules(modules)
             }

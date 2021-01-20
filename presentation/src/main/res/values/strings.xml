@@ -1,4 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="search_for_restaurant">Search for restaurant</string>
+    <string name="no_available_restaurants">No available restaurants</string>
+    <!--  Chips  -->
+    <string name="chip_best_match">Best Match</string>
+    <string name="chip_newest">Newest</string>
+    <string name="chip_rating_average">Rating Average</string>
+    <string name="chip_distance">Distance</string>
+    <string name="chip_popularity">Popularity</string>
+    <string name="chip_average_product_price">Average Product Price</string>
+    <string name="chip_delivery_cost">Delivery Cost</string>
+    <string name="chip_minimum_cost">Minimum Cost</string>
 </resources>
