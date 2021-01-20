@@ -13,16 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.justeat.presentation.di
+package com.justeat.domain.usecases
 
-import com.justeat.presentation.ui.viewmodel.RestaurantsViewModel
-import org.koin.core.module.Module
-import org.koin.dsl.module
+import com.justeat.domain.model.RestaurantDomainModel
+import com.justeat.domain.repository.RestaurantRepository
+import kotlinx.coroutines.flow.Flow
 
-private val viewModelModules: Module = module {
-    single { RestaurantsViewModel(get(), get(), get(), get()) }
+typealias SearchRestaurantBaseUseCase = BaseUseCase<String?, Flow<List<RestaurantDomainModel>>>
+
+class SearchRestaurantUseCase(
+    private val restaurantRepository: RestaurantRepository
+) : SearchRestaurantBaseUseCase {
+
+    override suspend fun invoke(params: String?): Flow<List<RestaurantDomainModel>> =
+        restaurantRepository.fetchRestaurants(params)
 }
-
-val presentationModule: List<Module> = listOf(
-    viewModelModules
-)

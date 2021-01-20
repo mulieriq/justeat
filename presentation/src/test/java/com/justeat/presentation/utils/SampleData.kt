@@ -13,6 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.justeat.presentation.ui.viewmodel
+package com.justeat.presentation.utils
 
-class RestaurantsViewModelTest
+import com.justeat.domain.model.RestaurantDomainModel
+
+val fakeRestaurant = listOf(
+    RestaurantDomainModel(
+        0L,
+        "Tanoshii Sushi",
+        "open",
+        7.0,
+        250.0,
+        4.0,
+        1190.00,
+        6.0,
+        912,
+        0,
+        1000,
+        true
+    )
+)

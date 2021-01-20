@@ -13,16 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.justeat.presentation.di
+package com.justeat.core.extensions
 
-import com.justeat.presentation.ui.viewmodel.RestaurantsViewModel
-import org.koin.core.module.Module
-import org.koin.dsl.module
+import android.view.View
 
-private val viewModelModules: Module = module {
-    single { RestaurantsViewModel(get(), get(), get(), get()) }
+fun View?.hide() {
+    this?.visibility = View.GONE
 }
 
-val presentationModule: List<Module> = listOf(
-    viewModelModules
-)
+fun View?.show() {
+    this?.visibility = View.VISIBLE
+}
