@@ -59,6 +59,35 @@ class MainActivityTest : KoinTest {
     }
 
     @Test
+    fun test_check_chips_displayed_and_clickable() = runBlocking {
+
+        coEvery {
+            restaurantUseCase.invoke(Unit)
+        } returns flowOf(fakeRestaurant)
+
+        declare {
+            RestaurantsViewModel(
+                restaurantUseCase,
+                favouriteUseCase,
+                searchUseCase,
+                filterUseCase
+            )
+        }
+
+        ActivityScenario.launch(MainActivity::class.java)
+
+        Screen.onScreen<JustEatScreen> {
+            chips.isDisplayed()
+            chips.isEnabled()
+            chips.apply {
+                hasSize(8)
+            }
+        }
+
+        Screen.idle(3000)
+    }
+
+    @Test
     fun test_check_restaurants_displayed() = runBlocking {
 
         coEvery {
@@ -77,8 +106,6 @@ class MainActivityTest : KoinTest {
         ActivityScenario.launch(MainActivity::class.java)
 
         Screen.onScreen<JustEatScreen> {
-
-            chips.isDisplayed()
 
             restaurants {
                 isDisplayed()
